@@ -181,6 +181,15 @@
           <h2 th:case="null">No tutor assignments yet</h2>
           <div th:case="*">
             <h2 class="my-5">Tutor Assignments</h2>
+            <div class="dropdown">
+              <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"> Choose Quarter
+              <span class="caret"></span></button>
+              <ul class="dropdown-menu">
+                <li><a href="/">Winter 2020</a></li>
+                <li><a href="/">Fall 2019</a></li>
+              </ul>
+            </div>
+            <br>
             <table class="table table-striped table-responsive-md">
               <thead>
                 <tr>
