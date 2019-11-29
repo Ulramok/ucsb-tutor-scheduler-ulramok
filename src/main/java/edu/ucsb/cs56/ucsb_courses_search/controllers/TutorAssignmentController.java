@@ -34,6 +34,11 @@ public class TutorAssignmentController {
     this.tutorRepository = tutorRepository;
     this.courseOfferingRepository = courseOfferingRepository;
   }
+  
+  @GetMapping("/tutorAssignments/create")
+  public String create(TutorAssignment tutorAssignment) {
+       return "tutorAssignments/create";
+  }
 
   @PostMapping("/tutorAssignments/add")
   public String add(@RequestParam(name = "cid") long cid, @RequestParam(name = "tid") long tid, Model model) {
