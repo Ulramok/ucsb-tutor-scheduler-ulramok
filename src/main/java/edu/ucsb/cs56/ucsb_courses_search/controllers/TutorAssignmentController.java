@@ -54,4 +54,14 @@ public class TutorAssignmentController {
     tutorAssignmentRepository.delete(a);
     return "index";
   }
+
+
+  @PostMapping(value = "/tutorAssignments/chooseQuarter")
+  public String chooseQuarter(@RequestParam(name = "tutorAssignmentsQuarterFilter", defaultValue="")
+                              String tutorAssignmentsQuarterFilter, Model model) {
+    logger.info("LOOK HERE! tutorAssignmentsQuarterFilter = " + tutorAssignmentsQuarterFilter);
+    model.addAttribute("tutorAssignmentsQuarterFilter", tutorAssignmentsQuarterFilter);
+    return "index";
+  }
+
 }

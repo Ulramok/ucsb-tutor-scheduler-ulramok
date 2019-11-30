@@ -181,14 +181,13 @@
           <h2 th:case="null">No tutor assignments yet</h2>
           <div th:case="*">
             <h2 class="my-5">Tutor Assignments</h2>
-            <div class="dropdown">
-              <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"> Choose Quarter
-              <span class="caret"></span></button>
-              <ul class="dropdown-menu">
-                <li><a href="/">Winter 2020</a></li>
-                <li><a href="/">Fall 2019</a></li>
-              </ul>
-            </div>
+            <form action ="#" th:action="@{/tutorAssignments/chooseQuarter}" method="POST">
+              <select name="tutorAssignmentsQuarterFilter">
+                  <option th:value="W20">Winter 2020</option>
+                  <option th:value="F19">Fall 2019</option>
+              </select>
+              <input type="submit" value="Submit">
+            </form>
             <br>
             <table class="table table-striped table-responsive-md">
               <thead>
@@ -208,23 +207,25 @@
               </thead>
               <tbody>
                 <tr th:each="ta : ${tutorAssignments}">
-                  <td th:text="${ta.id}"></td>
-                  <td th:text="${ta.tutor.id}"></td>
-                  <td th:text="${ta.tutor.fname}"></td>
-                  <td th:text="${ta.tutor.lname}"></td>
-                  <td th:text="${ta.tutor.email}"></td>
-                  <td th:text="${ta.tutor.level}"></td>
-                  <td th:text="${ta.courseOffering.id}"></td>
-                  <td th:text="${ta.courseOffering.course}"></td>
-                  <td th:text="${ta.courseOffering.quarter}"></td>
-                  <td th:text="${ta.courseOffering.instructor}"></td>
-                  <td>
-                    <a
-                      th:href="@{/tutorAssignments/delete/{id}(id=${ta.id})}"
-                      class="btn btn-primary"
-                      ><i class="fas fa-user-times ml-2"></i
-                    ></a>
-                  </td>
+                  <li th:if="${ta.courseOffering.quarter == tutorAssignmentsQuarterFilter}">
+                    <td th:text="${ta.id}"></td>
+                    <td th:text="${ta.tutor.id}"></td>
+                    <td th:text="${ta.tutor.fname}"></td>
+                    <td th:text="${ta.tutor.lname}"></td>
+                    <td th:text="${ta.tutor.email}"></td>
+                    <td th:text="${ta.tutor.level}"></td>
+                    <td th:text="${ta.courseOffering.id}"></td>
+                    <td th:text="${ta.courseOffering.course}"></td>
+                    <td th:text="${ta.courseOffering.quarter}"></td>
+                    <td th:text="${ta.courseOffering.instructor}"></td>
+                    <td>
+                      <a
+                        th:href="@{/tutorAssignments/delete/{id}(id=${ta.id})}"
+                        class="btn btn-primary"
+                        ><i class="fas fa-user-times ml-2"></i
+                      ></a>
+                    </td>
+                  </li>
                 </tr>
               </tbody>
             </table>

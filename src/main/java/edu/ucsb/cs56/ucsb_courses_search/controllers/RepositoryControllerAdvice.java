@@ -25,6 +25,7 @@ public class RepositoryControllerAdvice {
     private final TimeSlotRepository timeSlotRepository;
     private final TutorAssignmentRepository tutorAssignmentRepository;
     private final RoomsRepository roomsRepository;
+    private String tutorAssignmentsQuarterFilter;
 
     
     @Autowired
@@ -37,6 +38,7 @@ public class RepositoryControllerAdvice {
         this.timeSlotRepository = timeSlotRepository;
         this.tutorAssignmentRepository = tutorAssignmentRepository;
         this.roomsRepository = roomsRepository;
+        this.tutorAssignmentsQuarterFilter = "";
     }
 
     @ModelAttribute("tutors")
@@ -62,5 +64,10 @@ public class RepositoryControllerAdvice {
     @ModelAttribute("roomsModel")
     public Iterable<Rooms> getRoomsRepository() {
         return roomsRepository.findAll();
+    }
+
+    @ModelAttribute("tutorAssignmentsQuarterFilter")
+    public String getTutorAssignmentsQuarterFilter() {
+        return tutorAssignmentsQuarterFilter;
     }
 }
