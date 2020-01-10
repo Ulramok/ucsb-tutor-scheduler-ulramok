@@ -78,6 +78,18 @@ public class CourseOffering {
         return "CourseOffering{" + "id=" + id + ", course=" + course + ", quarter=" + quarter + ", instructor="
                 + instructor + '}';
     }
+    public boolean equals(CourseOffering c2){
+        if(!(this.course.equals(c2.getCourse()))){
+            return false;
+        }
+        if(!(this.quarter.equals(c2.getQuarter()))){
+            return false;
+        }
+        if(!(this.instructor.equals(c2.getInstructor()))){
+            return false;
+        }
+        return true;
+    }
     @Override
     public boolean equals(Object obj){
         if (this == obj)

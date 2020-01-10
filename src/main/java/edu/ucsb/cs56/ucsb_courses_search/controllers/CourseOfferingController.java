@@ -2,6 +2,7 @@ package edu.ucsb.cs56.ucsb_courses_search.controllers;
 
 import javax.validation.Valid;
 
+import edu.ucsb.cs56.ucsb_courses_search.entities.TutorAssignment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,8 @@ import edu.ucsb.cs56.ucsb_courses_search.repositories.CourseOfferingRepository;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Iterator;
 
 @Controller
 public class CourseOfferingController {
@@ -33,12 +36,33 @@ public class CourseOfferingController {
         return "courseOfferings/create";
     }
 
+    @GetMapping("/courseOfferings/mainCourse")
+    public String mainCourse(CourseOffering courseOffering) {
+        return "courseOfferings/mainCourse";
+    }
+
+    public boolean checkIfCourseExists(Iterable<CourseOffering> iter, CourseOffering courseOffering){
+        boolean courseExists = false;
+        for(CourseOffering course : iter) {
+            if(courseOffering.equals(course)){
+                courseExists = true;
+            }
+        }
+        return courseExists;
+
+    }
     @PostMapping("/courseOfferings/add")
     public String add(@Valid CourseOffering courseOffering, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "courseOfferings/create";
         }
-
+        Iterable<CourseOffering> iter = courseOfferingRepository.findAll();
+        boolean courseExists = checkIfCourseExists(iter, courseOffering);
+        if(courseExists == true){
+            final String errorCourseExists = "Course already exists for this quarter";
+            model.addAttribute("errorCourseExists", errorCourseExists);
+            return "index";
+        }
         courseOfferingRepository.save(courseOffering);
         model.addAttribute("courseOfferings", courseOfferingRepository.findAll());
         return "index";

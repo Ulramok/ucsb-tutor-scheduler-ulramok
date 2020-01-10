@@ -1,6 +1,6 @@
 package edu.ucsb.cs56.ucsb_courses_search.controllers;
 
-import edu.ucsb.cs56.ucsb_courses_search.entities.CSVToTutors;
+import edu.ucsb.cs56.ucsb_courses_search.CSVToTutors;
 import edu.ucsb.cs56.ucsb_courses_search.entities.Tutor;
 import edu.ucsb.cs56.ucsb_courses_search.repositories.TutorRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
 package edu.ucsb.cs56.ucsb_courses_search.controllers;
 
 import edu.ucsb.cs56.ucsb_courses_search.entities.Tutor;
-import edu.ucsb.cs56.ucsb_courses_search.entities.TutorsToCSV;
+import edu.ucsb.cs56.ucsb_courses_search.TutorsToCSV;
 import edu.ucsb.cs56.ucsb_courses_search.repositories.TutorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

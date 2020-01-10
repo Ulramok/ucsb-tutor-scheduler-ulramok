@@ -1,8 +1,10 @@
-package edu.ucsb.cs56.ucsb_courses_search.entities;
+package edu.ucsb.cs56.ucsb_courses_search;
 
 import com.opencsv.bean.ColumnPositionMappingStrategy;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
+import edu.ucsb.cs56.ucsb_courses_search.entities.Tutor;
+import edu.ucsb.cs56.ucsb_courses_search.entities.TutorBean;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
